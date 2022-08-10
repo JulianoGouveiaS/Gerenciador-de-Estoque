@@ -28,6 +28,7 @@ public class JwtUtils {
 			.compact();
 	}
 
+	//get permissoes [adm ou operador]
 	public static Claims getClaims(String token) {
 		try {
 			return Jwts.parser().setSigningKey(SECRET_KEY.getBytes()).parseClaimsJws(token).getBody();
