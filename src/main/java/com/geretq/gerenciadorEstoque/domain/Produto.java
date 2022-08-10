@@ -1,39 +1,52 @@
 package com.geretq.gerenciadorEstoque.domain;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Date;
-import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="tproduto")
 public class Produto implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id")
     private Long id;
 
     @Column(name = "descricao")
     private String descricao;
 
-    @Column(name = "dtValidade")
-    private Date dtValidade;
+    @Column(name = "dataValidade")
+    private Date dataValidade;
 
-    @Column(name = "dtCadastro")
-    private Date dtCadastro;
+    @Column(name = "dataCadastro")
+    private Date dataCadastro;
 
-    @Column(name = "dtUltimaAlteracao")
-    private Date dtUltimaAlteracao;
+    @Column(name = "dataUltimaAlteracao")
+    private Date dataUltimaAlteracao;
 
     @Column(name = "observacao")
     private String observacao;
 
-    @ManyToOne
-    @JoinColumn(name = "id")
+    @OneToOne
+    @JoinColumn(name = "usuarioAlteracao", referencedColumnName = "id")
     private Usuario usuarioAlteracao;
 
-    @Column(name = "qtdeEstoque")
-    private Boolean qtdeEstoque;
+    @Column(name = "quantidadeEstoque")
+    private Boolean quantidadeEstoque;
 
     public Produto() {
     }
@@ -41,12 +54,12 @@ public class Produto implements Serializable {
     public Produto(Long id, String descricao, Date dtValidade, Date dtCadastro, Date dtUltimaAlteracao, String observacao, Usuario usuarioAlteracao, Boolean qtdeEstoque) {
         this.id = id;
         this.descricao = descricao;
-        this.dtValidade = dtValidade;
-        this.dtCadastro = dtCadastro;
-        this.dtUltimaAlteracao = dtUltimaAlteracao;
+        this.dataValidade = dtValidade;
+        this.dataCadastro = dtCadastro;
+        this.dataUltimaAlteracao = dtUltimaAlteracao;
         this.observacao = observacao;
         this.usuarioAlteracao = usuarioAlteracao;
-        this.qtdeEstoque = qtdeEstoque;
+        this.quantidadeEstoque = qtdeEstoque;
     }
 
     public Long getId() {
@@ -65,28 +78,28 @@ public class Produto implements Serializable {
         this.descricao = descricao;
     }
 
-    public Date getDtValidade() {
-        return dtValidade;
+    public Date getDataValidade() {
+        return dataValidade;
     }
 
-    public void setDtValidade(Date dtValidade) {
-        this.dtValidade = dtValidade;
+    public void setDataValidade(Date dtValidade) {
+        this.dataValidade = dtValidade;
     }
 
-    public Date getDtCadastro() {
-        return dtCadastro;
+    public Date getDataCadastro() {
+        return dataCadastro;
     }
 
-    public void setDtCadastro(Date dtCadastro) {
-        this.dtCadastro = dtCadastro;
+    public void setDataCadastro(Date dtCadastro) {
+        this.dataCadastro = dtCadastro;
     }
 
-    public Date getDtUltimaAlteracao() {
-        return dtUltimaAlteracao;
+    public Date getDataUltimaAlteracao() {
+        return dataUltimaAlteracao;
     }
 
-    public void setDtUltimaAlteracao(Date dtUltimaAlteracao) {
-        this.dtUltimaAlteracao = dtUltimaAlteracao;
+    public void setDataUltimaAlteracao(Date dtUltimaAlteracao) {
+        this.dataUltimaAlteracao = dtUltimaAlteracao;
     }
 
     public String getObservacao() {
@@ -105,11 +118,11 @@ public class Produto implements Serializable {
         this.usuarioAlteracao = usuarioAlteracao;
     }
 
-    public Boolean getQtdeEstoque() {
-        return qtdeEstoque;
+    public Boolean getQuantidadeEstoque() {
+        return quantidadeEstoque;
     }
 
-    public void setQtdeEstoque(Boolean qtdeEstoque) {
-        this.qtdeEstoque = qtdeEstoque;
+    public void setQuantidadeEstoque(Boolean qtdeEstoque) {
+        this.quantidadeEstoque = qtdeEstoque;
     }
 }

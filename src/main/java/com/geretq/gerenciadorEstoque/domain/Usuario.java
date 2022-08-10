@@ -8,7 +8,12 @@ import java.util.*;
 @Table(name="tusuario")
 public class Usuario implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = -7860177038510942954L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -27,8 +32,8 @@ public class Usuario implements Serializable {
     @Column(name = "ativo")
     private Boolean ativo;
 
-    @Column(name = "dtCadastro")
-    private Date dtCadastro;
+    @Column(name = "dataCadastro")
+    private Date dataCadastro;
 
     public Usuario() {
     }
@@ -40,7 +45,7 @@ public class Usuario implements Serializable {
         this.senha = senha;
         this.tipo = tipo;
         this.ativo = ativo;
-        this.dtCadastro = dtCadastro;
+        this.dataCadastro = dtCadastro;
     }
 
     public Long getId() {
@@ -91,12 +96,12 @@ public class Usuario implements Serializable {
         this.ativo = ativo;
     }
 
-    public Date getDtCadastro() {
-        return dtCadastro;
+    public Date getDataCadastro() {
+        return dataCadastro;
     }
 
-    public void setDtCadastro(Date dtCadastro) {
-        this.dtCadastro = dtCadastro;
+    public void setDataCadastro(Date dtCadastro) {
+        this.dataCadastro = dtCadastro;
     }
 
     @Override
@@ -104,12 +109,12 @@ public class Usuario implements Serializable {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Usuario usuario = (Usuario) o;
-        return Objects.equals(id, usuario.id) && Objects.equals(nome, usuario.nome) && Objects.equals(login, usuario.login) && Objects.equals(senha, usuario.senha) && Objects.equals(tipo, usuario.tipo) && Objects.equals(ativo, usuario.ativo) && Objects.equals(dtCadastro, usuario.dtCadastro);
+        return Objects.equals(id, usuario.id) && Objects.equals(nome, usuario.nome) && Objects.equals(login, usuario.login) && Objects.equals(senha, usuario.senha) && Objects.equals(tipo, usuario.tipo) && Objects.equals(ativo, usuario.ativo) && Objects.equals(dataCadastro, usuario.dataCadastro);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, nome, login, senha, tipo, ativo, dtCadastro);
+        return Objects.hash(id, nome, login, senha, tipo, ativo, dataCadastro);
     }
 
     @Override
@@ -121,7 +126,7 @@ public class Usuario implements Serializable {
                 ", senha='" + senha + '\'' +
                 ", tipo='" + tipo + '\'' +
                 ", ativo=" + ativo +
-                ", dtCadastro=" + dtCadastro +
+                ", dtCadastro=" + dataCadastro +
                 '}';
     }
 }

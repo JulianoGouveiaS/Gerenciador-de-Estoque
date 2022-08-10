@@ -8,7 +8,12 @@ import java.util.Date;
 @Table(name="tcliente")
 public class Cliente implements Serializable {
 
-    @Id
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8370848178488113130L;
+
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
@@ -21,8 +26,8 @@ public class Cliente implements Serializable {
     @Column(name = "telefone")
     private String telefone;
 
-    @Column(name = "data")
-    private Date data;
+    @Column(name = "dataCadastro")
+    private Date dataCadastro;
 
     public Cliente() {
     }
@@ -32,7 +37,7 @@ public class Cliente implements Serializable {
         this.nome = nome;
         this.cpfCnpj = cpfCnpj;
         this.telefone = telefone;
-        this.data = data;
+        this.dataCadastro = data;
     }
 
     public Long getId() {
@@ -67,11 +72,11 @@ public class Cliente implements Serializable {
         this.telefone = telefone;
     }
 
-    public Date getData() {
-        return data;
+    public Date getDataCadastro() {
+        return dataCadastro;
     }
 
-    public void setData(Date data) {
-        this.data = data;
+    public void setDataCadastro(Date data) {
+        this.dataCadastro = data;
     }
 }
