@@ -1,8 +1,17 @@
 package com.geretq.gerenciadorEstoque.domain;
 
-import javax.persistence.*;
 import java.io.Serializable;
-import java.util.*;
+import java.util.Date;
+import java.util.Objects;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
 @Entity
 @Table(name="tusuario")
@@ -27,18 +36,19 @@ public class Usuario implements Serializable {
     private String senha;
 
     @Column(name = "tipo")
-    private String tipo;
+    @Enumerated(EnumType.STRING)
+    private TipoUsuarioEnum tipo;
 
     @Column(name = "ativo")
     private Boolean ativo;
 
-    @Column(name = "dataCadastro")
+    @Column(name = "datacadastro")
     private Date dataCadastro;
 
     public Usuario() {
     }
 
-    public Usuario(Long id, String nome, String login, String senha, String tipo, Boolean ativo, Date dtCadastro) {
+    public Usuario(Long id, String nome, String login, String senha, TipoUsuarioEnum tipo, Boolean ativo, Date dtCadastro) {
         this.id = id;
         this.nome = nome;
         this.login = login;
@@ -48,7 +58,17 @@ public class Usuario implements Serializable {
         this.dataCadastro = dtCadastro;
     }
 
-    public Long getId() {
+    public Usuario(Usuario usuario) {
+    	this.id = usuario.getId();
+        this.nome = usuario.getNome();
+        this.login = usuario.getLogin();
+        this.senha = usuario.getSenha();
+        this.tipo = usuario.getTipo();
+        this.ativo = usuario.getAtivo();
+        this.dataCadastro = usuario.getDataCadastro();
+	}
+
+	public Long getId() {
         return id;
     }
 
@@ -80,11 +100,11 @@ public class Usuario implements Serializable {
         this.senha = senha;
     }
 
-    public String getTipo() {
+    public TipoUsuarioEnum getTipo() {
         return tipo;
     }
 
-    public void setTipo(String tipo) {
+    public void setTipo(TipoUsuarioEnum tipo) {
         this.tipo = tipo;
     }
 
