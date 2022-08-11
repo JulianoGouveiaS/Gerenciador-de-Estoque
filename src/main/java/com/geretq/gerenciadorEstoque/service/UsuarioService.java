@@ -2,6 +2,7 @@ package com.geretq.gerenciadorEstoque.service;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -25,6 +26,10 @@ public class UsuarioService {
 
     public UsuarioService() throws NoSuchAlgorithmException {
         super();
+    }
+
+    public List<Usuario> buscarTodos() throws Exception {
+        return usuarioRepository.findAll();
     }
 
     public Usuario criarUsuario(Usuario usuario) throws Exception {
