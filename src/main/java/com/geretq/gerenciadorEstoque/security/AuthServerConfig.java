@@ -26,6 +26,8 @@ import org.springframework.security.oauth2.provider.token.TokenStore;
 import org.springframework.security.oauth2.provider.token.store.JwtAccessTokenConverter;
 import org.springframework.security.oauth2.provider.token.store.JwtTokenStore;
 
+import com.geretq.gerenciadorEstoque.domain.Usuario;
+import com.geretq.gerenciadorEstoque.repository.UsuarioRepository;
 import com.geretq.gerenciadorEstoque.utils.JwtUtils;
 
 @Configuration
@@ -38,6 +40,8 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
     
     @Autowired
     private CustomAccessDeniedHandler customAccessDeniedHandler;
+    @Autowired
+    UsuarioRepository usuarioRepository;
     
     @Value("${security.oauth2.client.client-id}")
 	private String clientId;	
@@ -90,6 +94,10 @@ public class AuthServerConfig extends AuthorizationServerConfigurerAdapter {
  			@Override
  		    public OAuth2AccessToken enhance(OAuth2AccessToken accessToken, OAuth2Authentication authentication ) {
  				final Map<String, Object> additionalInfo = new HashMap<>();
+ 				String login = ((String) authentication.getPrincipal());
+ 				Usuario usuario = usuarioRepository.findByLogin(login);
+ 				usuario.setSenha(null);
+ 				additionalInfo.put("usuario", usuario);
  		        ((DefaultOAuth2AccessToken) accessToken).setAdditionalInformation(additionalInfo);
  		        ((DefaultOAuth2AccessToken) accessToken).setExpiration(getExpirationDate());
  		        return super.enhance(accessToken, authentication );
