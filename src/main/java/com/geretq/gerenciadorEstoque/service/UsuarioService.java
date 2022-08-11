@@ -65,4 +65,8 @@ public class UsuarioService {
 			throw new BadCredentialsException(Constants.USUARIO_SENHA_INVALIDOS);
 		}
 	}
+
+	public Usuario buscarPorId(Long id) {
+		return usuarioRepository.findById(id).orElse(null);
+	}
 }
