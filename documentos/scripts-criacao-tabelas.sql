@@ -1,3 +1,5 @@
+CREATE DATABASE IF NOT EXISTS almoxarifado;
+
 DROP TABLE IF EXISTS `almoxarifado`.`tmovimentacao` ;
 DROP TABLE IF EXISTS `almoxarifado`.`tservico` ;
 DROP TABLE IF EXISTS `almoxarifado`.`tproduto` ;
