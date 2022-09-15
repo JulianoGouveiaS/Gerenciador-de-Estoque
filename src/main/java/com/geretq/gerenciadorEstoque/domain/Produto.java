@@ -29,29 +29,29 @@ public class Produto implements Serializable {
     @Column(name = "descricao")
     private String descricao;
 
-    @Column(name = "dataValidade")
+    @Column(name = "datavalidade")
     private Date dataValidade;
 
-    @Column(name = "dataCadastro")
+    @Column(name = "datacadastro")
     private Date dataCadastro;
 
-    @Column(name = "dataUltimaAlteracao")
+    @Column(name = "dataultimaalteracao")
     private Date dataUltimaAlteracao;
 
     @Column(name = "observacao")
     private String observacao;
 
     @OneToOne
-    @JoinColumn(name = "usuarioAlteracao", referencedColumnName = "id")
+    @JoinColumn(name = "usuarioalteracao", referencedColumnName = "id")
     private Usuario usuarioAlteracao;
 
-    @Column(name = "quantidadeEstoque")
-    private Boolean quantidadeEstoque;
+    @Column(name = "quantidadeestoque")
+    private Long quantidadeEstoque;
 
     public Produto() {
     }
 
-    public Produto(Long id, String descricao, Date dtValidade, Date dtCadastro, Date dtUltimaAlteracao, String observacao, Usuario usuarioAlteracao, Boolean qtdeEstoque) {
+    public Produto(Long id, String descricao, Date dtValidade, Date dtCadastro, Date dtUltimaAlteracao, String observacao, Usuario usuarioAlteracao, Long qtdeEstoque) {
         this.id = id;
         this.descricao = descricao;
         this.dataValidade = dtValidade;
@@ -118,11 +118,11 @@ public class Produto implements Serializable {
         this.usuarioAlteracao = usuarioAlteracao;
     }
 
-    public Boolean getQuantidadeEstoque() {
+    public Long getQuantidadeEstoque() {
         return quantidadeEstoque;
     }
 
-    public void setQuantidadeEstoque(Boolean qtdeEstoque) {
+    public void setQuantidadeEstoque(Long qtdeEstoque) {
         this.quantidadeEstoque = qtdeEstoque;
     }
 }

@@ -13,6 +13,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 @Entity
 @Table(name="tusuario")
 public class Usuario implements Serializable {
@@ -33,6 +35,7 @@ public class Usuario implements Serializable {
     private String login;
 
     @Column(name = "senha")
+    @JsonIgnore
     private String senha;
 
     @Column(name = "tipo")

@@ -33,7 +33,7 @@ public class UsuarioController{
         return ResponseEntity.ok().body(usuarioService.buscarPorId(id));
     }
 
-    @PostMapping(path = "/todos")
+    @GetMapping(path = "/todos")
     public ResponseEntity<List<Usuario>> buscarUsuarios() throws Exception{
         return ResponseEntity.ok().body(usuarioService.buscarTodos());
     }
