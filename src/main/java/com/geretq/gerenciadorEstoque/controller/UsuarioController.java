@@ -22,7 +22,6 @@ public class UsuarioController{
     @Autowired
     private UsuarioService usuarioService;
 
-
     @PostMapping(path = "/novo")
     public ResponseEntity<Usuario> criarUsuario(@RequestBody Usuario usuario) throws Exception{
         return ResponseEntity.ok().body(usuarioService.criarUsuario(usuario));
@@ -37,7 +36,5 @@ public class UsuarioController{
     public ResponseEntity<List<Usuario>> buscarUsuarios() throws Exception{
         return ResponseEntity.ok().body(usuarioService.buscarTodos());
     }
-
-
 
 }
