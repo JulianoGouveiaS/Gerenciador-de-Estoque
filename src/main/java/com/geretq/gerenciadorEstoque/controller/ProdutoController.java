@@ -23,15 +23,19 @@ public class ProdutoController {
     @Autowired
     private ProdutoService produtoService;
 
-
     @PostMapping
     public ResponseEntity<Produto> criarProduto(@RequestBody Produto produto) throws Exception{
-        return ResponseEntity.ok().body(produtoService.criarProduto(produto));
+        return ResponseEntity.ok().body(produtoService.salvar(produto));
     }
 
-    @GetMapping("todos")
+    @GetMapping
     public ResponseEntity<List<Produto>> buscarTodos() {
     	return ResponseEntity.ok(produtoService.buscarTodos());
+    }
+
+    @GetMapping("{id}")
+    public ResponseEntity<Produto> buscarPorId(@PathVariable Long id) {
+    	return ResponseEntity.ok(produtoService.buscarPorId(id));
     }
 
     @DeleteMapping("{id}")

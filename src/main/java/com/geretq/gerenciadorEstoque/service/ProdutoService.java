@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.StringUtils;
 
 import com.geretq.gerenciadorEstoque.domain.Produto;
@@ -21,7 +22,8 @@ public class ProdutoService {
         super();
     }
 
-    public Produto criarProduto(Produto produto) throws Exception {
+    @Transactional
+    public Produto salvar(Produto produto) throws Exception {
     	antesSalvar(produto);
         return produtoRepository.save(produto);
     }
@@ -54,6 +56,10 @@ public class ProdutoService {
 			throw new Exception("Não foi possível excluir este produto.");
 		}
 		return Boolean.TRUE;
+	}
+
+	public Produto buscarPorId(Long idProduto) {
+		return produtoRepository.findById(idProduto).orElse(null);
 	}
 
 }

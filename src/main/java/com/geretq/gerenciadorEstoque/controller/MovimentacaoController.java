@@ -1,6 +1,5 @@
 package com.geretq.gerenciadorEstoque.controller;
 
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -18,13 +17,9 @@ public class MovimentacaoController {
     @Autowired
     private MovimentacaoService movimentacaoService;
 
-
-    @PostMapping(path = "/novo")
+    @PostMapping
     public ResponseEntity<Movimentacao> criarMovimentacao(@RequestBody Movimentacao movimentacao) throws Exception{
-
-        return ResponseEntity.ok().body(movimentacaoService.criarMovimentacao(movimentacao));
+        return ResponseEntity.ok().body(movimentacaoService.salvar(movimentacao));
     }
-
-
 
 }

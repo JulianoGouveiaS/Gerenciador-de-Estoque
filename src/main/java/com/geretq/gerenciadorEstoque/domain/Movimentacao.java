@@ -5,12 +5,17 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name = "tmovimentacao")
@@ -30,11 +35,16 @@ public class Movimentacao implements Serializable {
 	private Usuario usuario;
 
 	@Column(name = "tipo")
-	private String tipo;
+	@Enumerated(EnumType.STRING)
+	private TipoMovimentacaoEnum tipo;
 
-	@OneToOne
-	@JoinColumn(name = "produto", referencedColumnName = "id")
+	@ManyToOne
+	@JoinColumn(name = "produto", referencedColumnName = "id", insertable = false, updatable = false)
+	@JsonIgnore
 	private Produto produto;
+	
+	@Column(name = "produto")
+	private Long idProduto;
 
 	@Column(name = "quantidade")
 	private Long quantidade;
@@ -44,7 +54,7 @@ public class Movimentacao implements Serializable {
 
 	public Movimentacao() {}
 
-	public Movimentacao(Long id, Usuario usuario, String tipo, Produto produto, Long quantidade, Date data) {
+	public Movimentacao(Long id, Usuario usuario, TipoMovimentacaoEnum tipo, Produto produto, Long quantidade, Date data) {
 		super();
 		this.id = id;
 		this.usuario = usuario;
@@ -70,11 +80,11 @@ public class Movimentacao implements Serializable {
 		this.usuario = usuario;
 	}
 
-	public String getTipo() {
+	public TipoMovimentacaoEnum getTipo() {
 		return tipo;
 	}
 
-	public void setTipo(String tipo) {
+	public void setTipo(TipoMovimentacaoEnum tipo) {
 		this.tipo = tipo;
 	}
 
@@ -84,6 +94,14 @@ public class Movimentacao implements Serializable {
 
 	public void setProduto(Produto produto) {
 		this.produto = produto;
+	}
+
+	public Long getIdProduto() {
+		return idProduto;
+	}
+
+	public void setIdProduto(Long idProduto) {
+		this.idProduto = idProduto;
 	}
 
 	public Long getQuantidade() {

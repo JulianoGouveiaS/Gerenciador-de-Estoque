@@ -2,6 +2,7 @@ package com.geretq.gerenciadorEstoque.domain;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,120 +10,134 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="tproduto")
+@Table(name = "tproduto")
 public class Produto implements Serializable {
 
-    /**
+	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-    private Long id;
+	private Long id;
 
-    @Column(name = "descricao")
-    private String descricao;
+	@Column(name = "descricao")
+	private String descricao;
 
-    @Column(name = "datavalidade")
-    private Date dataValidade;
+	@Column(name = "datavalidade")
+	private Date dataValidade;
 
-    @Column(name = "datacadastro")
-    private Date dataCadastro;
+	@Column(name = "datacadastro")
+	private Date dataCadastro;
 
-    @Column(name = "dataultimaalteracao")
-    private Date dataUltimaAlteracao;
+	@Column(name = "dataultimaalteracao")
+	private Date dataUltimaAlteracao;
 
-    @Column(name = "observacao")
-    private String observacao;
+	@Column(name = "observacao")
+	private String observacao;
 
-    @OneToOne
-    @JoinColumn(name = "usuarioalteracao", referencedColumnName = "id")
-    private Usuario usuarioAlteracao;
+	@OneToOne
+	@JoinColumn(name = "usuarioalteracao", referencedColumnName = "id")
+	private Usuario usuarioAlteracao;
 
-    @Column(name = "quantidadeestoque")
-    private Long quantidadeEstoque;
+	@Column(name = "quantidadeestoque")
+	private Long quantidadeEstoque;
 
-    public Produto() {
-    }
+	@OneToMany(mappedBy = "produto")
+	private List<Movimentacao> movimentacoes;
 
-    public Produto(Long id, String descricao, Date dtValidade, Date dtCadastro, Date dtUltimaAlteracao, String observacao, Usuario usuarioAlteracao, Long qtdeEstoque) {
-        this.id = id;
-        this.descricao = descricao;
-        this.dataValidade = dtValidade;
-        this.dataCadastro = dtCadastro;
-        this.dataUltimaAlteracao = dtUltimaAlteracao;
-        this.observacao = observacao;
-        this.usuarioAlteracao = usuarioAlteracao;
-        this.quantidadeEstoque = qtdeEstoque;
-    }
+	public Produto() {
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public Produto(Long id, String descricao, Date dtValidade, Date dtCadastro, Date dtUltimaAlteracao,
+			String observacao, Usuario usuarioAlteracao, Long qtdeEstoque) {
+		this.id = id;
+		this.descricao = descricao;
+		this.dataValidade = dtValidade;
+		this.dataCadastro = dtCadastro;
+		this.dataUltimaAlteracao = dtUltimaAlteracao;
+		this.observacao = observacao;
+		this.usuarioAlteracao = usuarioAlteracao;
+		this.quantidadeEstoque = qtdeEstoque;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getDescricao() {
-        return descricao;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
+	public String getDescricao() {
+		return descricao;
+	}
 
-    public Date getDataValidade() {
-        return dataValidade;
-    }
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
-    public void setDataValidade(Date dtValidade) {
-        this.dataValidade = dtValidade;
-    }
+	public Date getDataValidade() {
+		return dataValidade;
+	}
 
-    public Date getDataCadastro() {
-        return dataCadastro;
-    }
+	public void setDataValidade(Date dtValidade) {
+		this.dataValidade = dtValidade;
+	}
 
-    public void setDataCadastro(Date dtCadastro) {
-        this.dataCadastro = dtCadastro;
-    }
+	public Date getDataCadastro() {
+		return dataCadastro;
+	}
 
-    public Date getDataUltimaAlteracao() {
-        return dataUltimaAlteracao;
-    }
+	public void setDataCadastro(Date dtCadastro) {
+		this.dataCadastro = dtCadastro;
+	}
 
-    public void setDataUltimaAlteracao(Date dtUltimaAlteracao) {
-        this.dataUltimaAlteracao = dtUltimaAlteracao;
-    }
+	public Date getDataUltimaAlteracao() {
+		return dataUltimaAlteracao;
+	}
 
-    public String getObservacao() {
-        return observacao;
-    }
+	public void setDataUltimaAlteracao(Date dtUltimaAlteracao) {
+		this.dataUltimaAlteracao = dtUltimaAlteracao;
+	}
 
-    public void setObservacao(String observacao) {
-        this.observacao = observacao;
-    }
+	public String getObservacao() {
+		return observacao;
+	}
 
-    public Usuario getUsuarioAlteracao() {
-        return usuarioAlteracao;
-    }
+	public void setObservacao(String observacao) {
+		this.observacao = observacao;
+	}
 
-    public void setUsuarioAlteracao(Usuario usuarioAlteracao) {
-        this.usuarioAlteracao = usuarioAlteracao;
-    }
+	public Usuario getUsuarioAlteracao() {
+		return usuarioAlteracao;
+	}
 
-    public Long getQuantidadeEstoque() {
-        return quantidadeEstoque;
-    }
+	public void setUsuarioAlteracao(Usuario usuarioAlteracao) {
+		this.usuarioAlteracao = usuarioAlteracao;
+	}
 
-    public void setQuantidadeEstoque(Long qtdeEstoque) {
-        this.quantidadeEstoque = qtdeEstoque;
-    }
+	public Long getQuantidadeEstoque() {
+		return quantidadeEstoque;
+	}
+
+	public void setQuantidadeEstoque(Long qtdeEstoque) {
+		this.quantidadeEstoque = qtdeEstoque;
+	}
+
+	public List<Movimentacao> getMovimentacoes() {
+		return movimentacoes;
+	}
+
+	public void setMovimentacoes(List<Movimentacao> movimentacoes) {
+		this.movimentacoes = movimentacoes;
+	}
+
 }

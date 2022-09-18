@@ -1,5 +1,3 @@
-CREATE DATABASE IF NOT EXISTS almoxarifado;
-
 DROP TABLE IF EXISTS `almoxarifado`.`tmovimentacao` ;
 DROP TABLE IF EXISTS `almoxarifado`.`tservico` ;
 DROP TABLE IF EXISTS `almoxarifado`.`tproduto` ;
@@ -15,7 +13,7 @@ CREATE TABLE IF NOT EXISTS `almoxarifado`.`tusuario` (
   `senha` VARCHAR(255) NULL,
   `tipo` VARCHAR(50) NULL COMMENT 'ADMINISTRADOR ou OPERADOR',
   `ativo` TINYINT NULL,
-  `dataCadastro` DATE NULL,
+  `dataCadastro` DATETIME NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -27,7 +25,7 @@ CREATE TABLE IF NOT EXISTS `almoxarifado`.`tcliente` (
   `nome` VARCHAR(255) NULL,
   `cpfCnpj` VARCHAR(14) NULL,
   `telefone` VARCHAR(30) NULL,
-  `dataCadastro` DATE NULL,
+  `dataCadastro` DATETIME NULL,
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
@@ -38,8 +36,8 @@ CREATE TABLE IF NOT EXISTS `almoxarifado`.`tproduto` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(255) NULL,
   `dataValidade` DATE NULL,
-  `dataCadastro` DATE NULL,
-  `dataUltimaAlteracao` DATE NULL,
+  `dataCadastro` DATETIME NULL,
+  `dataUltimaAlteracao` DATETIME NULL,
   `observacao` VARCHAR(255) NULL,
   `usuarioAlteracao` INT NOT NULL COMMENT 'Usuário que realizou a última alteração no cadastro do produto',
   `quantidadeEstoque` INT NULL,
@@ -57,7 +55,7 @@ ENGINE = InnoDB;
 CREATE TABLE IF NOT EXISTS `almoxarifado`.`tservico` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `usuario` INT NULL COMMENT 'Usuário que criou o registro',
-  `data` DATE NULL COMMENT 'Data que o serviço foi feito',
+  `data` DATETIME NULL COMMENT 'Data que o serviço foi feito',
   `cliente` INT NULL COMMENT 'Cliente para qual o serviço foi prestado',
   `tipo` VARCHAR(45) NULL COMMENT 'VENDA, COMPRA',
   PRIMARY KEY (`id`),
@@ -82,7 +80,7 @@ CREATE TABLE IF NOT EXISTS `almoxarifado`.`tmovimentacao` (
   `tipo` VARCHAR(45) NULL COMMENT 'ENTRADA ou SAIDA',
   `produto` INT NULL COMMENT 'Produto que foi movimentado',
   `quantidade` INT NULL COMMENT 'quantidade movimentada',
-  `data` DATE NULL COMMENT 'Data da movimentação',
+  `data` DATETIME NULL COMMENT 'Data da movimentação',
   `servico` INT NULL COMMENT 'Código do serviço que gerou essa movimentação',
   PRIMARY KEY (`id`),
   CONSTRAINT `fk_movimentacao_usuario`
