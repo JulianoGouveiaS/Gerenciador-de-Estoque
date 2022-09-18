@@ -46,4 +46,14 @@ public class ProdutoService {
 		return produtoRepository.findAll();
 	}
 
+	public Boolean excluir(Long id) throws Exception {
+		try {
+			produtoRepository.deleteById(id);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw new Exception("Não foi possível excluir este produto.");
+		}
+		return Boolean.TRUE;
+	}
+
 }
