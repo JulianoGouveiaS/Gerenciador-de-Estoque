@@ -1,3 +1,4 @@
+create database if not exists `almoxarifado`;
 DROP TABLE IF EXISTS `almoxarifado`.`tmovimentacao` ;
 DROP TABLE IF EXISTS `almoxarifado`.`tservico` ;
 DROP TABLE IF EXISTS `almoxarifado`.`tproduto` ;
@@ -73,7 +74,7 @@ ENGINE = InnoDB;
 
 -- -----------------------------------------------------
 -- Table `almoxarifado`.`tmovimentacao`
--- -----------------------------------------------------  
+-- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `almoxarifado`.`tmovimentacao` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `usuario` INT NULL COMMENT 'Usuário que realizou a movimentação',

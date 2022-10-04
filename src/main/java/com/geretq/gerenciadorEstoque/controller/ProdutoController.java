@@ -28,7 +28,7 @@ public class ProdutoController {
         return ResponseEntity.ok().body(produtoService.salvar(produto));
     }
 
-    @GetMapping
+    @GetMapping("/todos")
     public ResponseEntity<List<Produto>> buscarTodos() {
     	return ResponseEntity.ok(produtoService.buscarTodos());
     }
