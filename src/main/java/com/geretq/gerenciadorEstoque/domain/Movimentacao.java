@@ -22,7 +22,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Movimentacao implements Serializable {
 
 	/**
-	 * 
+	 *
 	 */
 	private static final long serialVersionUID = 6660107810088488207L;
 
@@ -42,7 +42,12 @@ public class Movimentacao implements Serializable {
 	@JoinColumn(name = "produto", referencedColumnName = "id", insertable = false, updatable = false)
 	@JsonIgnore
 	private Produto produto;
-	
+
+	@ManyToOne
+	@JoinColumn(name = "venda", referencedColumnName = "id", insertable = false, updatable = false)
+	@JsonIgnore
+	private Venda venda;
+
 	@Column(name = "produto")
 	private Long idProduto;
 
@@ -54,12 +59,13 @@ public class Movimentacao implements Serializable {
 
 	public Movimentacao() {}
 
-	public Movimentacao(Long id, Usuario usuario, TipoMovimentacaoEnum tipo, Produto produto, Long quantidade, Date data) {
-		super();
+	public Movimentacao(Long id, Usuario usuario, TipoMovimentacaoEnum tipo, Produto produto, Venda venda, Long idProduto, Long quantidade, Date data) {
 		this.id = id;
 		this.usuario = usuario;
 		this.tipo = tipo;
 		this.produto = produto;
+		this.venda = venda;
+		this.idProduto = idProduto;
 		this.quantidade = quantidade;
 		this.data = data;
 	}
@@ -120,4 +126,11 @@ public class Movimentacao implements Serializable {
 		this.data = data;
 	}
 
+	public Venda getVenda() {
+		return venda;
+	}
+
+	public void setVenda(Venda venda) {
+		this.venda = venda;
+	}
 }

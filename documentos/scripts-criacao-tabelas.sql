@@ -73,6 +73,22 @@ CREATE TABLE IF NOT EXISTS `almoxarifado`.`tservico` (
 ENGINE = InnoDB;
 
 -- -----------------------------------------------------
+-- Table `almoxarifado`.`tvenda`
+-- -----------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS `almoxarifado`.`tvenda` (
+     `id` INT NOT NULL AUTO_INCREMENT,
+     `data` DATETIME NULL COMMENT 'Data que a venda foi feita',
+     `cliente` INT NULL COMMENT 'Cliente para qual o serviço foi prestado',
+     PRIMARY KEY (`id`),
+     CONSTRAINT `fk_venda_cliente`
+         FOREIGN KEY (`cliente`)
+             REFERENCES `almoxarifado`.`tcliente` (`id`)
+             ON DELETE NO ACTION
+             ON UPDATE NO ACTION)
+    ENGINE = InnoDB;
+
+-- -----------------------------------------------------
 -- Table `almoxarifado`.`tmovimentacao`
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `almoxarifado`.`tmovimentacao` (
@@ -80,6 +96,7 @@ CREATE TABLE IF NOT EXISTS `almoxarifado`.`tmovimentacao` (
   `usuario` INT NULL COMMENT 'Usuário que realizou a movimentação',
   `tipo` VARCHAR(45) NULL COMMENT 'ENTRADA ou SAIDA',
   `produto` INT NULL COMMENT 'Produto que foi movimentado',
+  `venda` INT NULL COMMENT 'VendaComponent referente',
   `quantidade` INT NULL COMMENT 'quantidade movimentada',
   `data` DATETIME NULL COMMENT 'Data da movimentação',
   `servico` INT NULL COMMENT 'Código do serviço que gerou essa movimentação',
